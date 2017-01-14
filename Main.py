@@ -10,21 +10,20 @@ import random
 # from Firework import *
 
 def main():
-    SCREEN_SIZE = (640, 480)  # 画面サイズ
+    SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
     # Pygameを初期化
     pygame.init()
     # SCREEN_SIZEの画面を作成
-    screen = pygame.display.set_mode(SCREEN_SIZE)
-
-    #複数の花火を管理
-    fireworks = []
+    screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
 
     # ゲームループ
     while True:
+        # 図形を描画
         screen.fill((0,0,0))   # 画面を青色で塗りつぶす
 
-        pygame.display.update()  # 画面を更新
+        pygame.draw.rect(screen, (255,255,0), Rect(10,10,300,200))
+        pygame.display.update()  # 画面
 
         # イベント処理
         for event in pygame.event.get():
