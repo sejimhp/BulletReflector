@@ -7,23 +7,22 @@ import math
 import pygame.mixer
 import random
 
-# from Firework import *
+from Stage import *
+from Game import *
 
 def main():
-    SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
     # Pygameを初期化
     pygame.init()
-    # SCREEN_SIZEの画面を作成
-    screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
+
+    game = Game()
 
     # ゲームループ
     while True:
-        # 図形を描画
-        screen.fill((0,0,0))   # 画面を青色で塗りつぶす
-
-        pygame.draw.rect(screen, (255,255,0), Rect(10,10,300,200))
-        pygame.display.update()  # 画面
+        # ゲームの実行
+        game.update()
+        # ゲームの描画
+        game.draw()
 
         # イベント処理
         for event in pygame.event.get():
