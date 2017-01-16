@@ -7,7 +7,6 @@ import math
 import pygame.mixer
 import random
 
-from Stage import *
 from Game import *
 
 def main():

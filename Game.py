@@ -3,17 +3,25 @@
 import pygame
 from pygame.locals import *
 
+from Stage import *
+from Player import *
+
+STAGE_SIZE = (3000, 2000)
 SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
 class Game:
     def __init__(self):
         # SCREEN_SIZEの画面を作成
         self.screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
+        self.stage = Stage()
+        self.player = Player()
 
     def update(self):
-        pygame.draw.rect(self.screen, (255,255,0), Rect(10,10,300,200))
+        self.stage.update()
+        self.player.update()
 
     def draw(self):
         self.screen.fill((0,0,0))   # 画面を青色で塗りつぶす
-        pygame.draw.rect(self.screen, (255,255,0), Rect(10,10,300,200))
+        self.stage.draw()
+        self.player.draw()
         pygame.display.update()  # 画面
