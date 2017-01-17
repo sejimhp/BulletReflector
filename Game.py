@@ -22,6 +22,6 @@ class Game:
 
     def draw(self):
         self.screen.fill((0,0,0))   # 画面を青色で塗りつぶす
-        self.stage.draw()
-        self.player.draw()
+        self.stage.draw(self.player)
+        self.player.draw(self.stage)
         pygame.display.update()  # 画面

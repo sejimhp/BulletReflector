@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import pygame
 from pygame.locals import *
+
+from Player import *
 STAGE_SIZE = (3000, 2000)
 SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
@@ -9,8 +11,8 @@ class Player:
     def __init__(self):
         self.screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
         self.hp = 10
-        self.x = 0
-        self.y = 0
+        self.x = 100
+        self.y = 100
 
     def update(self):
         # 押されているキーをチェック
@@ -25,5 +27,17 @@ class Player:
         if self.pressed_keys[K_UP]:
             self.y -= 1
 
-    def draw(self):
-        pygame.draw.circle(self.screen, (255,0,0), (self.x, self.y), 20)
+
+    def draw(self, stage):
+        x = self.x
+        y = self.y
+        if self.x > SCREEN_SIZE[0]/2:
+            x = SCREEN_SIZE[0]/2
+        if self.y > SCREEN_SIZE[1]/2:
+            y = SCREEN_SIZE[1]/2
+        if self.x + SCREEN_SIZE[0]/2 > stage.img_rect[2]:
+            x = self.x - (stage.img_rect[2] - SCREEN_SIZE[0])
+        if self.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
+            y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
+
+        pygame.draw.circle(self.screen, (255,0,0), (int(x), int(y)), 20)
