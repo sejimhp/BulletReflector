@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import pygame
-from pygame.locals import *
-import sys
-
-from Player import *
+from Common import *
 
 class Stage:
     def __init__(self):

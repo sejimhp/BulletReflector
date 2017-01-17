@@ -1,13 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import pygame
-from pygame.locals import *
-import sys
-import math
-import pygame.mixer
-import random
-
-from Game import *
+from Common import *
 
 def main():
 

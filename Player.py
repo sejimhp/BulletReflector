@@ -1,11 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-import pygame
-from pygame.locals import *
-
-from Player import *
-STAGE_SIZE = (3000, 2000)
-SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
+from Common import *
 
 class Player:
     def __init__(self):
