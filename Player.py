@@ -11,15 +11,18 @@ class Player:
         # 押されているキーをチェック
         self.pressed_keys = pygame.key.get_pressed()
         # 矢印キーなら画像を移動
-        if self.pressed_keys[K_LEFT]:
+        if self.x >= 25 and \
+           self.pressed_keys[K_LEFT]:
             self.x -= 2
-        if self.pressed_keys[K_RIGHT]:
+        if self.x <= 1895 and \
+           self.pressed_keys[K_RIGHT]:
             self.x += 2
-        if self.pressed_keys[K_DOWN]:
+        if self.y <= 1055 and \
+           self.pressed_keys[K_DOWN]:
             self.y += 2
-        if self.pressed_keys[K_UP]:
+        if self.y >= 25 and \
+           self.pressed_keys[K_UP]:
             self.y -= 2
-
 
     def draw(self, stage):
         x = self.x
