@@ -12,13 +12,13 @@ class Player:
         self.pressed_keys = pygame.key.get_pressed()
         # 矢印キーなら画像を移動
         if self.pressed_keys[K_LEFT]:
-            self.x -= 1
+            self.x -= 2
         if self.pressed_keys[K_RIGHT]:
-            self.x += 1
+            self.x += 2
         if self.pressed_keys[K_DOWN]:
-            self.y += 1
+            self.y += 2
         if self.pressed_keys[K_UP]:
-            self.y -= 1
+            self.y -= 2
 
 
     def draw(self, stage):
@@ -33,4 +33,5 @@ class Player:
         if self.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
+        pygame.draw.circle(self.screen, (100,0,0), (int(1100+self.x/10), int(50+self.y/10)), 3)
         pygame.draw.circle(self.screen, (255,0,0), (int(x), int(y)), 20)
