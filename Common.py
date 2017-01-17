@@ -10,5 +10,7 @@ STAGE_SIZE = (3000, 2000)
 SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
 from Stage import *
+from Enemy import *
+from EnemyManager import *
 from Player import *
 from Game import *

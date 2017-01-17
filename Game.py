@@ -6,13 +6,16 @@ class Game:
         self.screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
         self.stage = Stage()
         self.player = Player()
+        self.enemy_manager = EnemyManager()
 
     def update(self):
         self.stage.update()
         self.player.update()
+        self.enemy_manager.update(self.player)
 
     def draw(self):
         self.screen.fill((0,0,0))   # 画面を青色で塗りつぶす
         self.stage.draw(self.player)
         self.player.draw(self.stage)
+        self.enemy_manager.draw(self.player, self.stage)
         pygame.display.update()  # 画面
