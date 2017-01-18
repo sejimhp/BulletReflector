@@ -12,6 +12,6 @@ class EnemyManager:
         for enemy in self.enemys:
             enemy.update(player)
 
-    def draw(self, player, stage):
+    def draw(self, screen, player, stage):
         for enemy in self.enemys:
-            enemy.draw(player, stage)
+            enemy.draw(screen, player, stage)

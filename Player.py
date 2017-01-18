@@ -2,7 +2,6 @@ from Common import *
 
 class Player:
     def __init__(self):
-        self.screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
         self.hp = 10
         self.x = 100
         self.y = 100
@@ -24,7 +23,7 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def draw(self, stage):
+    def draw(self, screen, stage):
         x = self.x
         y = self.y
         if self.x > SCREEN_SIZE[0]/2:
@@ -36,5 +35,5 @@ class Player:
         if self.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
-        pygame.draw.circle(self.screen, (100,0,0), (int(1100+self.x/10), int(50+self.y/10)), 3)
-        pygame.draw.circle(self.screen, (255,0,0), (int(x), int(y)), 20)
+        pygame.draw.circle(screen, (100,0,0), (int(1100+self.x/10), int(50+self.y/10)), 3)
+        pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)

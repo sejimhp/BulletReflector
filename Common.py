@@ -11,6 +11,8 @@ SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
 from Stage import *
 from Enemy import *
+from Bullet import *
+from BulletManager import *
 from EnemyManager import *
 from Player import *
 from Game import *
