@@ -19,7 +19,7 @@ class Player:
             rad = 1.0
             if len(enemy_manager.enemys) != 0:
                 enemy = enemy_manager.enemys[0]
-                rad = math.atan((enemy.y-self.y)/(enemy.x-self.x))
+                rad = math.atan2((enemy.y-self.y),(enemy.x-self.x))
             player_bullet_manager.add(self.x, self.y, r, rad)
         # 矢印キーなら画像を移動
         if self.x >= 25 and \

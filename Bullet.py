@@ -15,8 +15,10 @@ class Bullet:
         return True
 
     def update(self):
-        self.x += self.r
-        self.y += self.r
+        x = self.r * math.cos(self.rad)
+        y = self.r * math.sin(self.rad)
+        self.x += x
+        self.y += y
 
     def draw(self, screen, player, stage):
         x = self.x
