@@ -3,12 +3,24 @@ from Common import *
 class Player:
     def __init__(self):
         self.hp = 10
+        self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 100
 
-    def update(self):
+    def update(self, player_bullet_manager, enemy_manager):
         # 押されているキーをチェック
         self.pressed_keys = pygame.key.get_pressed()
+        # 弾発射
+        if pygame.time.get_ticks() - self.time > 100:
+            self.time = pygame.time.get_ticks()
+            x = 1.0
+            y = 1.0
+            r = 1.0
+            rad = 1.0
+            if len(enemy_manager.enemys) != 0:
+                enemy = enemy_manager.enemys[0]
+                rad = math.atan((enemy.y-self.y)/(enemy.x-self.x))
+            player_bullet_manager.add(self.x, self.y, r, rad)
         # 矢印キーなら画像を移動
         if self.x >= 25 and \
            self.pressed_keys[K_LEFT]:

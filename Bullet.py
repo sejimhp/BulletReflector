@@ -1,15 +1,33 @@
 from Common import *
 
 class Bullet:
-    def __int__(self, x, y, r, rad):
+    def __init__(self, x, y, r, rad):
         self.x = x
         self.y = y
         self.r = r
         self.rad = rad
 
-    def update(self, screen):
+    def valid(self, stage):
+        if self.x < 0 or self.y < 0:
+            return False
+        elif self.x > stage.img_rect[2] or self.y > stage.img_rect[3]:
+            return False
+        return True
+
+    def update(self):
         self.x += self.r
         self.y += self.r
 
-    def draw(self):
-        pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)
+    def draw(self, screen, player, stage):
+        x = self.x
+        y = self.y
+        if player.x > SCREEN_SIZE[0]/2:
+            x -= (player.x - SCREEN_SIZE[0]/2)
+        if player.y > SCREEN_SIZE[1]/2:
+            y -= (player.y - SCREEN_SIZE[1]/2)
+        if player.x + SCREEN_SIZE[0]/2 > stage.img_rect[2]:
+            x = self.x - (stage.img_rect[2] - SCREEN_SIZE[0])
+        if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
+            y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
+
+        pygame.draw.circle(screen, (0,0,255), (int(x), int(y)), 4)

@@ -1,16 +1,18 @@
 from Common import *
 
 class BulletManager:
-    def __int__(self):
+    def __init__(self):
         self.bullets = []
 
     def add(self, x, y, r, rad):
         self.bullets.append(Bullet(x, y, r, rad))
 
-    def update(self):
+    def update(self, stage):
         for bullet in self.bullets:
             bullet.update()
+            if bullet.valid(stage) == False:
+                self.bullets.remove(bullet)
 
-    def draw(self):
+    def draw(self, screen, player, stage):
         for bullet in self.bullets:
-            bullet.draw()
+            bullet.draw(screen, player, stage)
