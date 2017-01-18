@@ -1,11 +1,11 @@
 from Common import *
 
 class Bullet:
-    def __int__(self):
-        self.x = 0
-        self.y = 0
-        self.r = 0
-        self.rad = 0
+    def __int__(self, x, y, r, rad):
+        self.x = x
+        self.y = y
+        self.r = r
+        self.rad = rad
 
     def update(self, screen):
         self.x += self.r

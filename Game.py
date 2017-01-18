@@ -4,10 +4,15 @@ class Game:
     def __init__(self):
         # SCREEN_SIZEの画面を作成
         self.screen = pygame.display.set_mode(SCREEN_SIZE, FULLSCREEN)
+        # 背景
         self.stage = Stage()
+        # 自機
         self.player = Player()
+        # 敵を管理
         self.enemy_manager = EnemyManager()
+        # 自機の弾の管理
         self.player_bullet_manager = BulletManager()
+        # 敵機の弾の管理
         self.enemy_bullet_manager = BulletManager()
 
     def update(self):
