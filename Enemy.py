@@ -30,11 +30,7 @@ class Enemy:
             rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
-    def valid(self, player):
-        #敵と自機の衝突判定
-        if player.x -39 <= self.x <= player.x +39 and \
-           player.y -39 <= self.y <= player.y +39:
-            return False
+    # def valid(self, player):
 
     def draw(self, screen, player, stage):
         x = self.x
@@ -48,5 +44,6 @@ class Enemy:
         if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
-        pygame.draw.circle(screen, (0,100,0), (int(1100+self.x/10), int(50+self.y/10)), 3)
+        pygame.draw.circle(screen, (0,100,0),\
+         (int(1100+self.x/10), int(50+self.y/10)), 3)
         pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
