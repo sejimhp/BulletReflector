@@ -21,6 +21,6 @@ class BulletManager:
                 self.enemys.remove(bullet)
         """
 
-    def draw(self, screen, player, stage):
+    def draw(self, screen, player, stage, color):
         for bullet in self.bullets:
-            bullet.draw(screen, player, stage)
+            bullet.draw(screen, player, stage, color)

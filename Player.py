@@ -45,7 +45,7 @@ class Player:
             else :
                 self.hp -= 1
     """
-    
+
     def draw(self, screen, stage):
         #hp = self.hp
         x = self.x

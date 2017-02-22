@@ -7,10 +7,12 @@ class Enemy:
         self.y = random.uniform(1, 1000)
         # 移動速度
         self.r = random.uniform(0.1, 1)
+        # 弾用のタイマー
+        self.time = pygame.time.get_ticks()
         # 角度
         self.rad = 1
 
-    def update(self, player):
+    def update(self, player, enemy_bullet_manager):
         if player.x > self.x:
             self.x += self.r
         if player.y > self.y:
@@ -19,16 +21,14 @@ class Enemy:
             self.x -= self.r
         if player.y < self.y:
             self.y -= self.r
-        """
         #弾発射
         if pygame.time.get_ticks() - self.time > 100:
             self.time = pygame.time.get_ticks()
             x = 1.0
             y = 1.0
             r = 1.0
-            rad = math.atan2((enemy.y-self.y),(enemy.x-self.x))
+            rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
-        """
 
     def valid(self, player):
         #敵と自機の衝突判定
