@@ -3,8 +3,8 @@ from Common import *
 class Enemy:
     def __init__(self):
         # 座標(double, double)
-        self.x = random.uniform(1, 2000)
-        self.y = random.uniform(1, 1000)
+        self.x = random.uniform(1, 3811)
+        self.y = random.uniform(1, 2371)
         # 移動速度
         self.r = random.uniform(0.1, 1)
         # 弾用のタイマー
@@ -22,7 +22,7 @@ class Enemy:
         if player.y < self.y:
             self.y -= self.r
         #弾発射
-        if pygame.time.get_ticks() - self.time > 100:
+        if pygame.time.get_ticks() - self.time > 1000:
             self.time = pygame.time.get_ticks()
             x = 1.0
             y = 1.0
@@ -45,5 +45,5 @@ class Enemy:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
         pygame.draw.circle(screen, (0,100,0),\
-         (int(1100+self.x/10), int(50+self.y/10)), 3)
+         (int(1100+self.x/15), int(50+self.y/15)), 3)
         pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)

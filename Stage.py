@@ -2,7 +2,7 @@ from Common import *
 
 class Stage:
     def __init__(self):
-        self.img_bg = pygame.image.load("test.jpg").convert()
+        self.img_bg = pygame.image.load("image/background_image.jpg").convert()
         self.img_rect = self.img_bg.get_rect()
 
     def update(self):
@@ -22,5 +22,5 @@ class Stage:
         screen.blit(self.img_bg, (int(x), int(y)))
 
         # 右上のステージを描画
-        pygame.draw.rect(screen, (100,100,100,0), Rect(1100,50,self.img_rect[2]/10,self.img_rect[3]/10))
-        pygame.draw.rect(screen, (0,0,0,0), Rect(1100+int(-x/10),50+int(-y/10),SCREEN_SIZE[0]/10,SCREEN_SIZE[1]/10), 1)
+        pygame.draw.rect(screen, (100,100,100,0), Rect(1100,50,self.img_rect[2]/15,self.img_rect[3]/15))
+        pygame.draw.rect(screen, (0,0,0,0), Rect(1100+int(-x/15),50+int(-y/15),SCREEN_SIZE[0]/15,SCREEN_SIZE[1]/15), 1)

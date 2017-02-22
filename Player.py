@@ -2,7 +2,7 @@ from Common import *
 
 class Player:
     def __init__(self):
-        self.hp = 1
+        self.hp = 10
         self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 100
@@ -25,10 +25,10 @@ class Player:
         if self.x >= 25 and \
            self.pressed_keys[K_LEFT]:
             self.x -= 2
-        if self.x <= 1895 and \
+        if self.x <= 3786 and \
            self.pressed_keys[K_RIGHT]:
             self.x += 2
-        if self.y <= 1055 and \
+        if self.y <= 2346 and \
            self.pressed_keys[K_DOWN]:
             self.y += 2
         if self.y >= 25 and \
@@ -57,5 +57,5 @@ class Player:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
         pygame.draw.circle(screen, (100,0,0),\
-         (int(1100+self.x/10), int(50+self.y/10)), 3)
+         (int(1100+self.x/15), int(50+self.y/15)), 3)
         pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)
