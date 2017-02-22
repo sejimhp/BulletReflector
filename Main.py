@@ -7,6 +7,10 @@ def main():
 
     game = Game()
 
+    # フレームレート
+    framerate = 200
+    clock = pygame.time.Clock()
+
     # ゲームループ
     while True:
         # ゲームの実行
@@ -21,6 +25,8 @@ def main():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     sys.exit()
+
+        clock.tick(framerate)
 
 if __name__ == "__main__":
     main()

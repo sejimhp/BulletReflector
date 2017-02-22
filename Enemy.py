@@ -10,7 +10,7 @@ class Enemy:
         # 角度
         self.rad = 1
 
-    def update(self, player, player_bullet_manager, enemy_manager):
+    def update(self, player):
         if player.x > self.x:
             self.x += self.r
         if player.y > self.y:
