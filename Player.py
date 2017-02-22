@@ -21,7 +21,7 @@ class Player:
                 enemy = enemy_manager.enemys[0]
                 rad = math.atan2((enemy.y-self.y),(enemy.x-self.x))
             player_bullet_manager.add(self.x, self.y, r, rad)
-        # 矢印キーなら画像を移動
+        # 矢印キーでの移動と移動可能範囲の指定
         if self.x >= 25 and \
            self.pressed_keys[K_LEFT]:
             self.x -= 2
@@ -35,7 +35,19 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
+    """
+    def vaild(self, bullet, player):
+        #弾と自機の当たり判定
+        if bullet.x -39 <= self.x <= bullet.x +39 and \
+           bullet.y -39 <= self.y <= bullet.y +39:
+            if self.pressed_keys[M]:
+                return False
+            else :
+                self.hp -= 1
+    """
+    
     def draw(self, screen, stage):
+        #hp = self.hp
         x = self.x
         y = self.y
         if self.x > SCREEN_SIZE[0]/2:

@@ -10,7 +10,7 @@ class Enemy:
         # 角度
         self.rad = 1
 
-    def update(self, player):
+    def update(self, player, player_bullet_manager, enemy_manager):
         if player.x > self.x:
             self.x += self.r
         if player.y > self.y:
@@ -19,7 +19,22 @@ class Enemy:
             self.x -= self.r
         if player.y < self.y:
             self.y -= self.r
+        """
+        #弾発射
+        if pygame.time.get_ticks() - self.time > 100:
+            self.time = pygame.time.get_ticks()
+            x = 1.0
+            y = 1.0
+            r = 1.0
+            rad = math.atan2((enemy.y-self.y),(enemy.x-self.x))
+            enemy_bullet_manager.add(self.x, self.y, r, rad)
+        """
 
+    def valid(self, player):
+        #敵と自機の衝突判定
+        if player.x -39 <= self.x <= player.x +39 and \
+           player.y -39 <= self.y <= player.y +39:
+            return False
 
     def draw(self, screen, player, stage):
         x = self.x
