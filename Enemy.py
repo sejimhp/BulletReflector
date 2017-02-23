@@ -2,6 +2,7 @@ from Common import *
 
 class Enemy:
     def __init__(self):
+        self.font = pygame.font.Font(None, 30)
         #HP
         self.hp = 3
         # 座標(double, double)
@@ -43,6 +44,7 @@ class Enemy:
         return self.hp < 1
 
     def draw(self, screen, player, stage):
+        text = self.font.render(str(self.hp) , True, (0,0,0))
         x = self.x
         y = self.y
         if player.x > SCREEN_SIZE[0]/2:
@@ -57,3 +59,4 @@ class Enemy:
         pygame.draw.circle(screen, (0,100,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
         pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
+        screen.blit(text, (x, y))

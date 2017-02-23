@@ -20,7 +20,7 @@ class Bullet:
         self.x += x
         self.y += y
 
-    def draw(self, screen, player, stage, color):
+    def draw(self, screen, player, stage, img):
         x = self.x
         y = self.y
         if player.x > SCREEN_SIZE[0]/2:
@@ -32,4 +32,8 @@ class Bullet:
         if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
-        pygame.draw.circle(screen, color, (int(x), int(y)), 4)
+        if color == (0, 0, 255):
+            screen.blit(img, (int(x), int(y)))
+        else:
+            screen.blit(img, (int(x), int(y)))
+        # pygame.draw.circle(screen, color, (int(x), int(y)), 4)
