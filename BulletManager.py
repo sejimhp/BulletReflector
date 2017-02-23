@@ -4,6 +4,8 @@ class BulletManager:
     def __init__(self):
         self.img_enemy1_bullet = pygame.image.load("image/enemy1_bullet.png").convert_alpha()
         self.img_player_bullet = pygame.image.load("image/player_bullet.png").convert_alpha()
+        self.img_enemy1_bullet = pygame.transform.scale(self.img_enemy1_bullet, (15, 15))
+        self.img_player_bullet = pygame.transform.scale(self.img_player_bullet, (15, 15))
         self.bullets = []
 
     def add(self, x, y, r, rad):
