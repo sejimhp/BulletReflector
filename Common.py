@@ -5,6 +5,8 @@ from pygame.locals import *
 import sys
 import math
 import pygame.mixer
+# import pygame._view
+import re
 import random
 STAGE_SIZE = (3811, 2371)
 SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ

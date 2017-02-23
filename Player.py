@@ -2,6 +2,7 @@ from Common import *
 
 class Player:
     def __init__(self):
+        self.font = pygame.font.Font(None, 30)
         self.hp = 10
         self.time = pygame.time.get_ticks()
         self.x = 100
@@ -59,3 +60,5 @@ class Player:
         pygame.draw.circle(screen, (100,0,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
         pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)
+        text = self.font.render(str(self.hp) , True, (0,0,0))
+        screen.blit(text, (x, y))

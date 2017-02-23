@@ -16,7 +16,6 @@ class Enemy:
         self.rad = 1
 
     def update(self, player, enemy_bullet_manager):
-
         if player.x > self.x:
             self.x += self.r
         if player.y > self.y:
@@ -44,7 +43,6 @@ class Enemy:
         return self.hp < 1
 
     def draw(self, screen, player, stage):
-        text = self.font.render(str(self.hp) , True, (0,0,0))
         x = self.x
         y = self.y
         if player.x > SCREEN_SIZE[0]/2:
@@ -59,4 +57,5 @@ class Enemy:
         pygame.draw.circle(screen, (0,100,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
         pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
+        text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
