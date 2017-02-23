@@ -2,6 +2,8 @@ from Common import *
 
 class Enemy:
     def __init__(self):
+        #HP
+        self.hp = 3
         # 座標(double, double)
         self.x = random.uniform(1, 3811)
         self.y = random.uniform(1, 2371)
@@ -13,6 +15,7 @@ class Enemy:
         self.rad = 1
 
     def update(self, player, enemy_bullet_manager):
+
         if player.x > self.x:
             self.x += self.r
         if player.y > self.y:
@@ -30,7 +33,14 @@ class Enemy:
             rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
-    # def valid(self, player):
+    def valid(self, player_bullet_manager):
+        #敵と自機の衝突判定
+        for bullet in player_bullet_manager.bullets:
+            if bullet.x -19 <= self.x <= bullet.x +19 and \
+               bullet.y -19 <= self.y <= bullet.y +19:
+                player_bullet_manager.bullets.remove(bullet)
+                self.hp -= 1
+        return self.hp < 1
 
     def draw(self, screen, player, stage):
         x = self.x

@@ -17,7 +17,7 @@ class Player:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
                player_bullet_manager.add(\
-                bullet.x, bullet.y, bullet.r + 10, bullet.rad + math.pi)
+                bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi)
                enemy_bullet_manager.bullets.remove(bullet)
         # 押されているキーをチェック
         self.pressed_keys = pygame.key.get_pressed()

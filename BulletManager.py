@@ -13,13 +13,6 @@ class BulletManager:
             bullet.update()
             if bullet.valid(stage) == False:
                 self.bullets.remove(bullet)
-        """
-        #敵の打った弾が自機と衝突した場合削除
-        for bullet in self.bullets:
-            bullet.update(player)
-            if enemy.valid(player) == False:
-                self.enemys.remove(bullet)
-        """
 
     def draw(self, screen, player, stage, color):
         for bullet in self.bullets:
