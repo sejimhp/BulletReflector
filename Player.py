@@ -35,7 +35,7 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def valid(self, enemy_manager):
+    def valid(self, enemy_manager): #item_managerを入れる
         #敵と自機の衝突判定
         for enemy in enemy_manager.enemys:
             if self.x -39 <= enemy.x <= self.x +39 and \
@@ -43,7 +43,11 @@ class Player:
                enemy_manager.enemys.remove(enemy)
                self.hp -= 1
         return self.hp <= 0
-
+        """
+        for item in item_manager.items:
+            if self.x = item.x and self.y = item.y:
+                item_manager.items.remove(item)
+        """
     def draw(self, screen, stage):
         x = self.x
         y = self.y
