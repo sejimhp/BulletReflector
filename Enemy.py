@@ -33,14 +33,7 @@ class Enemy:
             rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
-    def valid(self, player_bullet_manager):
-        #敵と自機の衝突判定
-        for bullet in player_bullet_manager.bullets:
-            if bullet.x -19 <= self.x <= bullet.x +19 and \
-               bullet.y -19 <= self.y <= bullet.y +19:
-                player_bullet_manager.bullets.remove(bullet)
-                self.hp -= 1
-        return self.hp < 1
+    # def valid(self, player):
 
     def draw(self, screen, player, stage):
         x = self.x
@@ -59,3 +52,15 @@ class Enemy:
         pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
         text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
+
+    def valid(self, player_bullet_manager):
+        #敵と自機の衝突判定
+        for bullet in player_bullet_manager.bullets:
+            if bullet.x -19 <= self.x <= bullet.x +19 and \
+               bullet.y -19 <= self.y <= bullet.y +19:
+                player_bullet_manager.bullets.remove(bullet)
+                self.hp -= 1
+        return self.hp < 1
+
+    def draw(self, screen, player, stage):
+        x = self.x
