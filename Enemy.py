@@ -30,8 +30,6 @@ class Enemy:
             rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
-    # def valid(self, player):
-
     def draw(self, screen, player, stage):
         x = self.x
         y = self.y

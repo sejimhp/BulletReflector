@@ -14,10 +14,8 @@ class Game:
         self.player_bullet_manager = BulletManager()
         # 敵機の弾の管理
         self.enemy_bullet_manager = BulletManager()
-        # アイテム
-        #self.item = Item()
         # アイテム管理
-        #self.item_manager = ItemManager()
+        self.item_manager = ItemManager()
 
     def update(self):
         self.stage.update()
@@ -33,6 +31,5 @@ class Game:
         self.enemy_manager.draw(self.screen, self.player, self.stage)
         self.player_bullet_manager.draw(self.screen, self.player, self.stage, (0, 0, 255))
         self.enemy_bullet_manager.draw(self.screen, self.player, self.stage, (255, 0, 0))
-        pygame.draw.circle(self.screen, (255,0,0), (int(10), int(10)), 20) #アイテムの仮表示
-        #self.item.draw(self.screen) どう引っ張ったら出てくるのかわからない
+        self.item_manager.draw(self.screen, self.player, self.stage)
         pygame.display.update()  # 画面

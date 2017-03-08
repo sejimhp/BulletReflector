@@ -43,11 +43,14 @@ class Player:
                enemy_manager.enemys.remove(enemy)
                self.hp -= 1
         return self.hp <= 0
-        """
+
         for item in item_manager.items:
-            if self.x = item.x and self.y = item.y:
+            if self.x == item.x and self.y == item.y:
                 item_manager.items.remove(item)
-        """
+                item_id = random.uniform(1,2)
+                if item_id == 1:
+                    self.hp += 1
+
     def draw(self, screen, stage):
         x = self.x
         y = self.y
