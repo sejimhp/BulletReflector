@@ -18,3 +18,5 @@ from BulletManager import *
 from EnemyManager import *
 from Player import *
 from Game import *
+from Item import *
+#from ItemManager import *
