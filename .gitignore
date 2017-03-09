@@ -211,5 +211,5 @@ FakesAssemblies/
 /Puyo/Screenshot
 *.html
 
-__pycache__
-.vs
+__pycache__/
+.vs/
