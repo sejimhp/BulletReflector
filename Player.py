@@ -36,7 +36,7 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def valid(self, enemy_manager):
+    def valid(self, enemy_manager, item_manager):
         #敵と自機の衝突判定
         for enemy in enemy_manager.enemys:
             if self.x -39 <= enemy.x <= self.x +39 and \
@@ -69,5 +69,3 @@ class Player:
         pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)
         text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
-
-    def valid(self, enemy_manager, item_manager):

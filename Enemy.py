@@ -33,26 +33,6 @@ class Enemy:
             rad = math.atan2((player.y-self.y),(player.x-self.x))
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
-    # def valid(self, player):
-
-    def draw(self, screen, player, stage):
-        x = self.x
-        y = self.y
-        if player.x > SCREEN_SIZE[0]/2:
-            x -= (player.x - SCREEN_SIZE[0]/2)
-        if player.y > SCREEN_SIZE[1]/2:
-            y -= (player.y - SCREEN_SIZE[1]/2)
-        if player.x + SCREEN_SIZE[0]/2 > stage.img_rect[2]:
-            x = self.x - (stage.img_rect[2] - SCREEN_SIZE[0])
-        if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
-            y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
-
-        pygame.draw.circle(screen, (0,100,0),\
-         (int(1100+self.x/15), int(50+self.y/15)), 3)
-        pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
-        text = self.font.render(str(self.hp) , True, (0,0,0))
-        screen.blit(text, (x, y))
-
     def valid(self, player_bullet_manager):
         #敵と自機の衝突判定
         for bullet in player_bullet_manager.bullets:
@@ -73,3 +53,9 @@ class Enemy:
             x = self.x - (stage.img_rect[2] - SCREEN_SIZE[0])
         if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
+
+        pygame.draw.circle(screen, (0,100,0),\
+         (int(1100+self.x/15), int(50+self.y/15)), 3)
+        pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
+        text = self.font.render(str(self.hp) , True, (0,0,0))
+        screen.blit(text, (x, y))
