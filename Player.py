@@ -8,9 +8,9 @@ class Player:
         self.x = 100
         self.y = 100
 
-    def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager):
+    def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager):
         # hpの判定
-        if self.valid(enemy_manager):
+        if self.valid(enemy_manager, item_manager):
             sys.exit()
 
         #弾と自機の当たり判定
@@ -36,7 +36,7 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def valid(self, enemy_manager):
+    def valid(self, enemy_manager, item_manager):
         #敵と自機の衝突判定
         for enemy in enemy_manager.enemys:
             if self.x -39 <= enemy.x <= self.x +39 and \
@@ -44,6 +44,14 @@ class Player:
                enemy_manager.enemys.remove(enemy)
                self.hp -= 1
         return self.hp <= 0
+		#自機とアイテムの衝突判定
+        for item in item_manager.items:
+            if self.x -39 <= item.x <= self.x +39 and \
+               self.y -39 <= item.y <= self.y +39:
+               item_manager.items.remove(item)
+               item_id = random.uniform(1,2)
+               if item_id == 1:
+                    self.hp += 1
 
     def draw(self, screen, stage):
         x = self.x

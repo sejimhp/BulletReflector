@@ -34,7 +34,7 @@ class Enemy:
             enemy_bullet_manager.add(self.x, self.y, r, rad)
 
     def valid(self, player_bullet_manager):
-        #敵と自機の衝突判定
+        #敵の跳ね返した弾と自機の衝突判定
         for bullet in player_bullet_manager.bullets:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
