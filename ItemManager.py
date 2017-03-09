@@ -6,7 +6,7 @@ class ItemManager:
 		self.items = []
 
 	def update(self, player):
-		if pygame.time.get_ticks() -self.time > 100:
+		if self.time > 100:
 			self.time = pygame.time.get_ticks()
 			self.items.append(Item())
 		# 接触判定
