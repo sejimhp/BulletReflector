@@ -20,9 +20,10 @@ class Game:
     def update(self):
         self.stage.update()
         self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager)
-        self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager)
+        self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager)
         self.player_bullet_manager.update(self.stage)
         self.enemy_bullet_manager.update(self.stage)
+        self.item_manager.update(self.player)
 
     def draw(self):
         self.screen.fill((0,0,0))   # 画面を青色で塗りつぶす
