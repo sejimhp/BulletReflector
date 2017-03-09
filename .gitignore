@@ -210,3 +210,5 @@ FakesAssemblies/
 /Puyo/Example
 /Puyo/Screenshot
 *.html
+
+/__pycache__
