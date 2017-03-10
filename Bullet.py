@@ -38,7 +38,7 @@ class Bullet:
 class MyBullet(Bullet):
     def __init__(self, x, y, r, rad):
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/player_bullet.png").convert_alpha()
+        self.image = pygame.image.load("image/player_bullet.png")
         self.image = pygame.transform.scale(self.image, (20, 20))
 
 class EnemyBullet(Bullet):

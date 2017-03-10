@@ -20,9 +20,10 @@ class Player:
         for bullet in enemy_bullet_manager.bullets:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
-               player_bullet_manager.add(\
-                bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
-               enemy_bullet_manager.bullets.remove(bullet)
+               if bullet.id == 1:
+                   player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
+                   enemy_bullet_manager.bullets.remove(bullet)
+
         # 押されているキーをチェック
         self.pressed_keys = pygame.key.get_pressed()
         # 矢印キーでの移動と移動可能範囲の指定
@@ -55,20 +56,6 @@ class Player:
                item_id = random.uniform(1,2)
                if item_id == 1:
                     self.hp += 1
-    def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
-        #回転させたイメージの作成
-        rotateimg = pygame.transform.rotate(src_surf,angle)
-
-        w1, h1 = src_surf.get_size()  #回転前のサイズ
-        w2, h2 = rotateimg.get_size() #回転後のサイズ
-
-        if center:
-            topleft = (pos[0] - w2 / 2, pos[1] - h2 / 2)
-        else:
-            dx, dy = (w2 - w1) / 2, (h2 - h1) / 2
-            topleft = (pos[0] - dx, pos[1] - dy)
-        dst_surf.blit(rotateimg, topleft)
-        return rotateimg, topleft
 
     def draw(self, screen, stage):
         x = self.x
@@ -92,3 +79,18 @@ class Player:
         # ゲージの表示
         pygame.draw.rect(screen, (255,255,0), Rect(10,10,30*self.hp,30))
         pygame.draw.rect(screen, (255,255,0), Rect(10,50,30*self.mp,30))
+
+    def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
+        #回転させたイメージの作成
+        rotateimg = pygame.transform.rotate(src_surf,angle)
+
+        w1, h1 = src_surf.get_size()  #回転前のサイズ
+        w2, h2 = rotateimg.get_size() #回転後のサイズ
+
+        if center:
+            topleft = (pos[0] - w2 / 2, pos[1] - h2 / 2)
+        else:
+            dx, dy = (w2 - w1) / 2, (h2 - h1) / 2
+            topleft = (pos[0] - dx, pos[1] - dy)
+        dst_surf.blit(rotateimg, topleft)
+        return rotateimg, topleft

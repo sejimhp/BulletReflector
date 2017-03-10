@@ -10,6 +10,8 @@ class Enemy:
         self.time = pygame.time.get_ticks()
         # 角度
         self.rad = 2
+        # 機ID
+        self.id = 0
 
     def update(self, player, enemy_bullet_manager):
         if player.x > self.x:
@@ -69,6 +71,8 @@ class Enemy:
 class Enemy1(Enemy):
     def __init__(self):
         Enemy.__init__(self)
+        # ID
+        self.id = 1
         #HP
         self.hp = 5
         # 移動速度
@@ -88,15 +92,29 @@ class Enemy1(Enemy):
 class Enemy2(Enemy):
     def __init__(self):
         Enemy.__init__(self)
+        # ID
+        self.id = 2
         #HP
         self.hp = 3
         # 移動速度
         self.r = 0
         self.image = pygame.image.load("image/enemy2.png")
+    def update(self, player, enemy_bullet_manager):
+        Enemy.update(self, player, enemy_bullet_manager)
+        #弾発射
+        if pygame.time.get_ticks() - self.time > 5000:
+            self.time = pygame.time.get_ticks()
+            x = 2.0
+            y = 2.0
+            r = 1.0
+            rad = math.atan2((player.y-self.y),(player.x-self.x))
+            enemy_bullet_manager.add(self.x, self.y, r, rad, 3)
 
 class Enemy3(Enemy):
     def __init__(self):
         Enemy.__init__(self)
+        # ID
+        self.id = 3
         #HP
         self.hp = 1
         # 移動速度
@@ -106,6 +124,8 @@ class Enemy3(Enemy):
 class Enemy4(Enemy):
     def __init__(self):
         Enemy.__init__(self)
+        # ID
+        self.id = 4
         #HP
         self.hp = 2
         # 移動速度
