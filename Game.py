@@ -33,7 +33,7 @@ class Game:
         self.stage.draw(self.screen, self.player)
         self.player.draw(self.screen, self.stage)
         self.enemy_manager.draw(self.screen, self.player, self.stage)
-        self.player_bullet_manager.draw(self.screen, self.player, self.stage, (0, 0, 255))
-        self.enemy_bullet_manager.draw(self.screen, self.player, self.stage, (255, 0, 0))
+        self.player_bullet_manager.draw(self.screen, self.player, self.stage)
+        self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
         # self.item_manager.draw(self.screen, self.player, self.stage)
         # self.effect_manager.draw()        pygame.display.update()  # 画面

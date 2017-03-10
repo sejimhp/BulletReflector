@@ -6,6 +6,7 @@ class Bullet:
         self.y = y
         self.r = r
         self.rad = rad
+        self.image = 0
 
     def valid(self, stage):
         if self.x < 0 or self.y < 0:
@@ -20,7 +21,7 @@ class Bullet:
         self.x += x
         self.y += y
 
-    def draw(self, screen, player, stage, img):
+    def draw(self, screen, player, stage):
         x = self.x
         y = self.y
         if player.x > SCREEN_SIZE[0]/2:
@@ -32,7 +33,27 @@ class Bullet:
         if player.y + SCREEN_SIZE[1]/2 > stage.img_rect[3]:
             y = self.y - (stage.img_rect[3] - SCREEN_SIZE[1])
 
-        if color == (0, 0, 255):
-            screen.blit(img, (int(x), int(y)))
-        else:
-            screen.blit(img, (int(x), int(y)))
+        screen.blit(self.image, (int(x), int(y)))
+
+class MyBullet(Bullet):
+    def __init__(self, x, y, r, rad):
+        Bullet.__init__(self, x, y, r, rad)
+        self.image = pygame.image.load("image/player_bullet.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (20, 20))
+
+class EnemyBullet(Bullet):
+    def __init__(self, x, y, r, rad):
+        Bullet.__init__(self, x, y, r, rad)
+        self.image = pygame.image.load("image/enemy1_bullet.png")
+        self.image = pygame.transform.scale(self.image, (20, 20))
+
+class Arrow(Bullet):
+    def __init__(self, x, y, r, rad):
+        Bullet.__init__(self, x, y, r, rad)
+        self.image = pygame.image.load("image/arrow.png")
+
+
+class Laser(Bullet):
+    def __init__(self, x, y, r, rad):
+        Bullet.__init__(self, x, y, r, rad)
+        self.image = pygame.image.load("image/laser.png")

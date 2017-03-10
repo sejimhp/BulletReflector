@@ -83,7 +83,7 @@ class Enemy1(Enemy):
             y = 1.0
             r = 1.0
             rad = math.atan2((player.y-self.y),(player.x-self.x))
-            enemy_bullet_manager.add(self.x, self.y, r, rad)
+            enemy_bullet_manager.add(self.x, self.y, r, rad, 2)
 
 class Enemy2(Enemy):
     def __init__(self):
