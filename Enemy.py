@@ -14,6 +14,7 @@ class Enemy:
         self.time = pygame.time.get_ticks()
         # 角度
         self.rad = 1
+        self.image = pygame.image.load("image/enemy1.png")
 
     def update(self, player, enemy_bullet_manager):
         if player.x > self.x:
@@ -56,6 +57,6 @@ class Enemy:
 
         pygame.draw.circle(screen, (0,100,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
-        pygame.draw.circle(screen, (0,255,0), (int(x), int(y)), 20)
+        screen.blit(self.image, (int(x), int(y)))
         text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
