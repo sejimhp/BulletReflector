@@ -8,6 +8,7 @@ class Bullet:
         self.r = r
         self.rad = rad
         self.image = 0
+        self.id
 
     def valid(self, stage):
         if self.x < 0 or self.y < 0:
@@ -16,7 +17,7 @@ class Bullet:
             return False
         return True
 
-    def update(self):
+    def update(self, player):
         x = self.r * math.cos(self.rad)
         y = self.r * math.sin(self.rad)
         self.x += x
@@ -38,18 +39,21 @@ class Bullet:
 
 class MyBullet(Bullet):
     def __init__(self, x, y, r, rad):
+        self.id = 1
         Bullet.__init__(self, x, y, r, rad)
         self.image = pygame.image.load("image/player_bullet.png")
         self.image = pygame.transform.scale(self.image, (20, 20))
 
 class EnemyBullet(Bullet):
     def __init__(self, x, y, r, rad):
+        self.id = 2
         Bullet.__init__(self, x, y, r, rad)
         self.image = pygame.image.load("image/enemy1_bullet.png")
         self.image = pygame.transform.scale(self.image, (20, 20))
 
 class Arrow(Bullet):
     def __init__(self, x, y, r, rad):
+        self.id = 3
         Bullet.__init__(self, x, y, r, rad)
         self.image = pygame.image.load("image/arrow.png")
         # 矢印の向き
@@ -59,9 +63,18 @@ class Arrow(Bullet):
         else: # 左半分の処理
             self.image = pygame.transform.flip(self.image ,True ,True)
             self.image = pygame.transform.rotate(self.image, (math.pi/2 - rad)*180/math.pi)
+    def update(self, player):
+        Bullet.update(self, player)
+        if self.r == 0:
+            self.x = player.x
+            self.y = player.y
+            self.pressed_keys = pygame.key.get_pressed()
+            if self.pressed_keys[K_SPACE]:
+                self.r = 8
 
 
 class Laser(Bullet):
     def __init__(self, x, y, r, rad):
+        self.id = 4
         Bullet.__init__(self, x, y, r, rad)
         self.image = pygame.image.load("image/laser.png")

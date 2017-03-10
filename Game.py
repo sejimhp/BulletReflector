@@ -23,8 +23,8 @@ class Game:
         self.stage.update()
         self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager)
         self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager)
-        self.player_bullet_manager.update(self.stage)
-        self.enemy_bullet_manager.update(self.stage)
+        self.player_bullet_manager.update(self.stage, self.player)
+        self.enemy_bullet_manager.update(self.stage, self.player)
         # self.item_manager.update(self.player)
         # self.effect_manager.update()
 

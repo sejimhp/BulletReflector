@@ -19,8 +19,11 @@ class Player:
         for bullet in enemy_bullet_manager.bullets:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
-               if bullet.id == 1:
+               if bullet.id == 2:
                    player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
+                   enemy_bullet_manager.bullets.remove(bullet)
+               elif bullet.id == 3:
+                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
                    enemy_bullet_manager.bullets.remove(bullet)
 
         # 押されているキーをチェック
