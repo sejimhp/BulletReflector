@@ -2,6 +2,7 @@ from Common import *
 
 class Bullet:
     def __init__(self, x, y, r, rad):
+        self.font = pygame.font.Font(None, 30)
         self.x = x
         self.y = y
         self.r = r
@@ -51,6 +52,13 @@ class Arrow(Bullet):
     def __init__(self, x, y, r, rad):
         Bullet.__init__(self, x, y, r, rad)
         self.image = pygame.image.load("image/arrow.png")
+        # 矢印の向き
+        if abs(rad) < (math.pi/2): # 右半分の処理
+            self.image = pygame.transform.flip(self.image ,True, False)
+            self.image = pygame.transform.rotate(self.image, -(math.pi/2+rad)*180/math.pi)
+        else: # 左半分の処理
+            self.image = pygame.transform.flip(self.image ,True ,True)
+            self.image = pygame.transform.rotate(self.image, (math.pi/2 - rad)*180/math.pi)
 
 
 class Laser(Bullet):

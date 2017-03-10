@@ -2,7 +2,6 @@ from Common import *
 
 class Player:
     def __init__(self):
-        self.font = pygame.font.Font(None, 30)
         self.hp = 10
         self.mp = 10
         self.time = pygame.time.get_ticks()
