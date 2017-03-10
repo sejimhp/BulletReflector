@@ -4,6 +4,7 @@ class Player:
     def __init__(self):
         self.font = pygame.font.Font(None, 30)
         self.hp = 10
+        self.mp = 10
         self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 100
@@ -71,3 +72,7 @@ class Player:
         screen.blit(self.image, (int(x), int(y)))
         text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
+
+        # ゲージの表示
+        pygame.draw.rect(screen, (255,255,0), Rect(10,10,30*self.hp,30))
+        pygame.draw.rect(screen, (255,255,0), Rect(10,50,30*self.mp,30))
