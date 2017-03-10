@@ -36,4 +36,3 @@ class Bullet:
             screen.blit(img, (int(x), int(y)))
         else:
             screen.blit(img, (int(x), int(y)))
-        # pygame.draw.circle(screen, color, (int(x), int(y)), 4)
