@@ -7,6 +7,7 @@ class Player:
         self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 100
+        self.image = pygame.image.load("image/player.png")
 
     def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager):
         # hpの判定
@@ -67,6 +68,6 @@ class Player:
 
         pygame.draw.circle(screen, (100,0,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
-        pygame.draw.circle(screen, (255,0,0), (int(x), int(y)), 20)
+        screen.blit(self.image, (int(x), int(y)))
         text = self.font.render(str(self.hp) , True, (0,0,0))
         screen.blit(text, (x, y))
