@@ -3,7 +3,7 @@ from Common import *
 class Player:
     def __init__(self):
         self.hp = 10
-        self.mp = 180
+        self.mp = 120
         self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 200
@@ -36,11 +36,18 @@ class Player:
         if self.y >= 25 and \
            self.pressed_keys[K_UP]:
             self.y -= 2
-        if pygame.time.get_ticks() - self.time_rapid_laser > 3000 and \
+        if pygame.time.get_ticks() - self.time_rapid_laser > 1000 and \
          self.pressed_keys[K_z] and self.mp >= 30:
             self.time_rapid_laser = pygame.time.get_ticks()
             self.mp -= 60
-            player_bullet_manager.add(self.x, self.y, 3,  math.pi, 5)
+            min_x = 10000
+            min_y = 10000
+            for enemy in enemy_manager.enemys:
+                if (min_x**2 + min_y**2) > (enemy.x**2 + enemy.y**2):
+                    min_x = enemy.x
+                    min_y = enemy.y
+            rad = math.atan2((self.y-min_y),(self.x-min_x))
+            player_bullet_manager.add(self.x, self.y, 10,  rad+math.pi, 5)
 
         return self.hp <= 0
 

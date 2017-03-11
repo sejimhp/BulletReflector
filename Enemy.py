@@ -28,8 +28,11 @@ class Enemy:
         for bullet in player_bullet_manager.bullets:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
-                player_bullet_manager.bullets.remove(bullet)
-                self.hp -= 1
+               if bullet.id == 5:
+                   self.hp -= 100
+               else:
+                   player_bullet_manager.bullets.remove(bullet)
+                   self.hp -= 1
         return self.hp < 1
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
