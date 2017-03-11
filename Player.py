@@ -6,7 +6,7 @@ class Player:
         self.mp = 10
         self.time = pygame.time.get_ticks()
         self.x = 100
-        self.y = 100
+        self.y = 200
         self.image = pygame.image.load("image/player.png")
         self.image_item = pygame.image.load("image/item_bullet.png")
         self.image_item = pygame.transform.scale(self.image_item, (30, 30))
@@ -15,26 +15,8 @@ class Player:
         self.flag_increase_bullet = False
 
     def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager, effect_manager):
-        # hpの判定
-        if self.valid(enemy_manager, item_manager, effect_manager):
-            sys.exit()
-
-        #弾と自機の当たり判定
-        for bullet in enemy_bullet_manager.bullets:
-            if bullet.x -19 <= self.x <= bullet.x +19 and \
-               bullet.y -19 <= self.y <= bullet.y +19:
-               if bullet.id == 2: # 普通の弾
-                   player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
-                   enemy_bullet_manager.bullets.remove(bullet)
-                   if self.flag_increase_bullet:
-                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi - 0.1, 1)
-                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi + 0.1, 1)
-                       if pygame.time.get_ticks() - self.time > 10000:
-                           self.time = pygame.time.get_ticks()
-                           self.flag_increase_bullet = False
-               elif bullet.id == 3: # 矢
-                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
-                   enemy_bullet_manager.bullets.remove(bullet)
+        # あたり判定
+        self.collision(enemy_manager, item_manager, effect_manager, enemy_bullet_manager, player_bullet_manager)
 
         # 押されているキーをチェック
         self.pressed_keys = pygame.key.get_pressed()
@@ -52,7 +34,9 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def valid(self, enemy_manager, item_manager, effect_manager):
+        return self.hp <= 0
+
+    def collision(self, enemy_manager, item_manager, effect_manager, enemy_bullet_manager, player_bullet_manager):
         #敵と自機の衝突判定
         for enemy in enemy_manager.enemys:
             if self.x -39 <= enemy.x <= self.x +39 and \
@@ -74,7 +58,22 @@ class Player:
                    self.flag_increase_bullet = True
                    self.time = pygame.time.get_ticks()
 
-        return self.hp <= 0
+        #弾と自機の当たり判定
+        for bullet in enemy_bullet_manager.bullets:
+            if bullet.x -19 <= self.x <= bullet.x +19 and \
+               bullet.y -19 <= self.y <= bullet.y +19:
+               if bullet.id == 2: # 普通の弾
+                   player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
+                   enemy_bullet_manager.bullets.remove(bullet)
+                   if self.flag_increase_bullet:
+                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi - 0.1, 1)
+                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi + 0.1, 1)
+                       if pygame.time.get_ticks() - self.time > 10000:
+                           self.time = pygame.time.get_ticks()
+                           self.flag_increase_bullet = False
+               elif bullet.id == 3: # 矢
+                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
+                   enemy_bullet_manager.bullets.remove(bullet)
 
     def draw(self, screen, stage):
         x = self.x
