@@ -8,7 +8,11 @@ class Player:
         self.x = 100
         self.y = 100
         self.image = pygame.image.load("image/player.png")
+        self.image_item = pygame.image.load("image/item_bullet.png")
+        self.image_item = pygame.transform.scale(self.image_item, (30, 30))
         self.rad=0
+        # 弾増やすよう
+        self.flag_increase_bullet = False
 
     def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager, effect_manager):
         # hpの判定
@@ -19,10 +23,16 @@ class Player:
         for bullet in enemy_bullet_manager.bullets:
             if bullet.x -19 <= self.x <= bullet.x +19 and \
                bullet.y -19 <= self.y <= bullet.y +19:
-               if bullet.id == 2:
+               if bullet.id == 2: # 普通の弾
                    player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
                    enemy_bullet_manager.bullets.remove(bullet)
-               elif bullet.id == 3:
+                   if self.flag_increase_bullet:
+                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi - 0.1, 1)
+                       player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi + 0.1, 1)
+                       if pygame.time.get_ticks() - self.time > 10000:
+                           self.time = pygame.time.get_ticks()
+                           self.flag_increase_bullet = False
+               elif bullet.id == 3: # 矢
                    player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
                    enemy_bullet_manager.bullets.remove(bullet)
 
@@ -51,15 +61,20 @@ class Player:
                self.hp -= 1
                effect_manager.effects.append(Damage())
 
-        return self.hp <= 0
 		#自機とアイテムの衝突判定
         for item in item_manager.items:
             if self.x -39 <= item.x <= self.x +39 and \
                self.y -39 <= item.y <= self.y +39:
                item_manager.items.remove(item)
-               item_id = random.uniform(1,2)
-               if item_id == 1:
-                    self.hp += 1
+               if item.id == 1:
+                   self.hp += 1
+               elif item.id == 2:
+                   self.mp += 1
+               elif item.id == 3:
+                   self.flag_increase_bullet = True
+                   self.time = pygame.time.get_ticks()
+
+        return self.hp <= 0
 
     def draw(self, screen, stage):
         x = self.x
@@ -81,8 +96,11 @@ class Player:
         screen.blit(image, (int(x), int(y)))
 
         # ゲージの表示
-        pygame.draw.rect(screen, (255,255,0), Rect(10,10,30*self.hp,30))
-        pygame.draw.rect(screen, (255,255,0), Rect(10,50,30*self.mp,30))
+        pygame.draw.rect(screen, (255,255,0), Rect(10,50,30*self.hp,30))
+        pygame.draw.rect(screen, (255,255,0), Rect(10,90,30*self.mp,30))
+        if self.flag_increase_bullet:
+            screen.blit(self.image_item, (100, 10))
+
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
         #回転させたイメージの作成

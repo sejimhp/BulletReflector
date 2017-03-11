@@ -25,7 +25,7 @@ class Game:
         self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager, self.effect_manager)
         self.player_bullet_manager.update(self.stage, self.player)
         self.enemy_bullet_manager.update(self.stage, self.player)
-        # self.item_manager.update(self.player)
+        self.item_manager.update(self.player)
         self.effect_manager.update()
 
     def draw(self):
@@ -35,5 +35,5 @@ class Game:
         self.enemy_manager.draw(self.screen, self.player, self.stage)
         self.player_bullet_manager.draw(self.screen, self.player, self.stage)
         self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
-        # self.item_manager.draw(self.screen, self.player, self.stage)
+        self.item_manager.draw(self.screen, self.player, self.stage)
         self.effect_manager.draw(self.screen)        pygame.display.update()  # 画面
