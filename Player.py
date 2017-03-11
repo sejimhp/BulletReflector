@@ -3,7 +3,7 @@ from Common import *
 class Player:
     def __init__(self):
         self.hp = 10
-        self.mp = 10
+        self.mp = 180
         self.time = pygame.time.get_ticks()
         self.x = 100
         self.y = 200
@@ -37,9 +37,9 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
         if pygame.time.get_ticks() - self.time_rapid_laser > 3000 and \
-         self.pressed_keys[K_z] and self.mp >= 3:
+         self.pressed_keys[K_z] and self.mp >= 30:
             self.time_rapid_laser = pygame.time.get_ticks()
-            self.mp -= 3
+            self.mp -= 60
             player_bullet_manager.add(self.x, self.y, 3,  math.pi, 5)
 
         return self.hp <= 0
@@ -61,7 +61,7 @@ class Player:
                if item.id == 1:
                    self.hp += 1
                elif item.id == 2:
-                   self.mp += 1
+                   self.mp += 60
                elif item.id == 3:
                    self.flag_increase_bullet = True
                    self.time = pygame.time.get_ticks()
@@ -81,6 +81,9 @@ class Player:
                            self.flag_increase_bullet = False
                elif bullet.id == 3: # 矢
                    player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
+                   enemy_bullet_manager.bullets.remove(bullet)
+               elif bullet.id == 4:
+                   self.mp += 1
                    enemy_bullet_manager.bullets.remove(bullet)
 
     def draw(self, screen, stage):
@@ -103,12 +106,13 @@ class Player:
         screen.blit(image, (int(x), int(y)))
 
         # 左上のゲージの表示
-        pygame.draw.rect(screen, (81,168,255), Rect(70,35,30*self.hp,15))
-        pygame.draw.rect(screen, (62,255,158), Rect(70,65,30*self.mp,15))
+        pygame.draw.rect(screen, (81,168,255), Rect(70,35,27*self.hp,15))
+        pygame.draw.rect(screen, (62,255,158), Rect(70,65,1.5*self.mp,15))
+        pygame.draw.rect(screen, (255,255,255), Rect(70+3*30,65,1,15))
+        pygame.draw.rect(screen, (255,255,255), Rect(70+3*60,65,1,15))
         screen.blit(self.image_title, (20, 20))
         if self.flag_increase_bullet:
             screen.blit(self.image_item, (25, 90))
-
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
         #回転させたイメージの作成
