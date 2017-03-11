@@ -27,15 +27,19 @@ class Game:
             self.pressed_keys = pygame.key.get_pressed()
             if self.pressed_keys[K_RIGHT]:
                 self.state = "GAME"
-                self.player.hp = 10;
+                self.player.hp = 10
+                self.enemy_bullet_manager.bullets.clear()
+                self.player_bullet_manager.bullets.clear()
+                self.item_manager.items.clear()
+                self.enemy_manager.enemys.clear()
         elif self.state == "GAME":
             self.stage.update()
+            self.item_manager.update(self.player)
             self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager)
             if self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager, self.effect_manager):
                 self.state = "SCORE"
             self.player_bullet_manager.update(self.stage, self.player)
             self.enemy_bullet_manager.update(self.stage, self.player)
-            self.item_manager.update(self.player)
             self.effect_manager.update()
         elif self.state == "SCORE":
             self.pressed_keys = pygame.key.get_pressed()

@@ -12,7 +12,9 @@ class BulletManager:
         elif bullet_type == 3:
             self.bullets.append(Arrow(x, y, r, rad))
         elif bullet_type == 4:
-            self.bullets.append(Laser(x, y, r, rad))
+            self.bullets.append(EnemyLaser(x, y, r, rad))
+        elif bullet_type == 5:
+            self.bullets.append(PlayerLaser(x, y, r, rad))
 
     def update(self, stage, player):
         # 弾が画面外に行った場合削除

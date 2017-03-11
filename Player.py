@@ -10,9 +10,12 @@ class Player:
         self.image = pygame.image.load("image/player.png")
         self.image_item = pygame.image.load("image/item_bullet.png")
         self.image_item = pygame.transform.scale(self.image_item, (30, 30))
+        self.image_title = pygame.image.load("image/frame.png")
         self.rad=0
         # 弾増やすよう
         self.flag_increase_bullet = False
+        # レーザーの連射防止よう
+        self.time_rapid_laser = 0
 
     def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager, effect_manager):
         # あたり判定
@@ -33,6 +36,11 @@ class Player:
         if self.y >= 25 and \
            self.pressed_keys[K_UP]:
             self.y -= 2
+        if pygame.time.get_ticks() - self.time_rapid_laser > 3000 and \
+         self.pressed_keys[K_z] and self.mp >= 3:
+            self.time_rapid_laser = pygame.time.get_ticks()
+            self.mp -= 3
+            player_bullet_manager.add(self.x, self.y, 3,  math.pi, 5)
 
         return self.hp <= 0
 
@@ -94,11 +102,12 @@ class Player:
          (int(1100+self.x/15), int(50+self.y/15)), 3)
         screen.blit(image, (int(x), int(y)))
 
-        # ゲージの表示
-        pygame.draw.rect(screen, (255,255,0), Rect(10,50,30*self.hp,30))
-        pygame.draw.rect(screen, (255,255,0), Rect(10,90,30*self.mp,30))
+        # 左上のゲージの表示
+        pygame.draw.rect(screen, (81,168,255), Rect(70,35,30*self.hp,15))
+        pygame.draw.rect(screen, (62,255,158), Rect(70,65,30*self.mp,15))
+        screen.blit(self.image_title, (20, 20))
         if self.flag_increase_bullet:
-            screen.blit(self.image_item, (100, 10))
+            screen.blit(self.image_item, (25, 90))
 
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):

@@ -72,9 +72,14 @@ class Arrow(Bullet):
             if self.pressed_keys[K_SPACE]:
                 self.r = 8
 
-
-class Laser(Bullet):
+class EnemyLaser(Bullet):
     def __init__(self, x, y, r, rad):
         self.id = 4
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/laser.png")
+        self.image = pygame.image.load("image/enemy_laser.png")
+
+class PlayerLaser(Bullet):
+    def __init__(self, x, y, r, rad):
+        self.id = 5
+        Bullet.__init__(self, x, y, r, rad)
+        self.image = pygame.image.load("image/player_laser.png")

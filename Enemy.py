@@ -128,6 +128,20 @@ class Enemy4(Enemy):
         self.id = 4
         #HP
         self.hp = 2
+        self.interval = pygame.time.get_ticks()
         # 移動速度
         self.r = random.uniform(0.1, 1)
         self.image = pygame.image.load("image/enemy4.png")
+    def update(self, player, enemy_bullet_manager):
+        Enemy.update(self, player, enemy_bullet_manager)
+        #弾発射
+        if pygame.time.get_ticks() - self.time < 5000:
+            if pygame.time.get_ticks() - self.interval > 5000 / 20:
+                self.interval = pygame.time.get_ticks()
+                x = 4.0
+                y = 4.0
+                r = 1.0
+                rad = math.atan2((player.y-self.y),(player.x-self.x))
+                enemy_bullet_manager.add(self.x, self.y, r, rad, 4)
+        elif pygame.time.get_ticks() - self.time > 10000:
+            self.time = pygame.time.get_ticks()
