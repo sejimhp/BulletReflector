@@ -17,16 +17,16 @@ class Game:
         # アイテム管理
         self.item_manager = ItemManager()
         # エフェクト管理
-        # self.effect_manager = EffectManager()
+        self.effect_manager = EffectManager()
 
     def update(self):
         self.stage.update()
         self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager)
-        self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager)
+        self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager, self.effect_manager)
         self.player_bullet_manager.update(self.stage, self.player)
         self.enemy_bullet_manager.update(self.stage, self.player)
         # self.item_manager.update(self.player)
-        # self.effect_manager.update()
+        self.effect_manager.update()
 
     def draw(self):
         self.screen.fill((0,0,0))   # 画面を青色で塗りつぶす
@@ -36,4 +36,4 @@ class Game:
         self.player_bullet_manager.draw(self.screen, self.player, self.stage)
         self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
         # self.item_manager.draw(self.screen, self.player, self.stage)
-        # self.effect_manager.draw()        pygame.display.update()  # 画面
+        self.effect_manager.draw(self.screen)        pygame.display.update()  # 画面

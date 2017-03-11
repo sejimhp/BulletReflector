@@ -10,9 +10,9 @@ class Player:
         self.image = pygame.image.load("image/player.png")
         self.rad=0
 
-    def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager):
+    def update(self, enemy_manager, player_bullet_manager, enemy_bullet_manager, item_manager, effect_manager):
         # hpの判定
-        if self.valid(enemy_manager, item_manager):
+        if self.valid(enemy_manager, item_manager, effect_manager):
             sys.exit()
 
         #弾と自機の当たり判定
@@ -42,13 +42,15 @@ class Player:
            self.pressed_keys[K_UP]:
             self.y -= 2
 
-    def valid(self, enemy_manager, item_manager):
+    def valid(self, enemy_manager, item_manager, effect_manager):
         #敵と自機の衝突判定
         for enemy in enemy_manager.enemys:
             if self.x -39 <= enemy.x <= self.x +39 and \
                self.y -39 <= enemy.y <= self.y +39:
                enemy_manager.enemys.remove(enemy)
                self.hp -= 1
+               effect_manager.effects.append(Damage())
+
         return self.hp <= 0
 		#自機とアイテムの衝突判定
         for item in item_manager.items:

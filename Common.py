@@ -36,9 +36,9 @@ from Enemy import *
 from Bullet import *
 from BulletManager import *
 from EnemyManager import *
+from Effect import *
+from EffectManager import *
 from Player import *
-# from Effect import *
-# from EffectManager import *
 from Item import *
 from ItemManager import *
 from Game import *

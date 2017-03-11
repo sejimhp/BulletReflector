@@ -65,8 +65,8 @@ class Enemy:
         pygame.draw.circle(screen, (0,100,0),\
          (int(1100+self.x/15), int(50+self.y/15)), 3)
         screen.blit(image, (int(x), int(y)))
-        text = self.font.render(str(self.hp) , True, (255,255,255))
-        screen.blit(text, (x, y))
+        # text = self.font.render(str(self.hp) , True, (255,255,255))
+        # screen.blit(text, (x, y))
 
 class Enemy1(Enemy):
     def __init__(self):
