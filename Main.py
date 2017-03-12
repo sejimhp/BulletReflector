@@ -10,6 +10,7 @@ def main():
     # フレームレート
     framerate = 200
     clock = pygame.time.Clock()
+    os.getcwd()
 
     # ゲームループ
     while True:

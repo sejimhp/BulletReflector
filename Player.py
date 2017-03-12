@@ -1,13 +1,14 @@
 from Common import *
 
-# item_sound = pygame.mixer.Sound("music/アイテム取得音.mp3")
-# bullet_sound = pygame.mixer.Sound("music/通常弾反射音.mp3")
-laser_sound = pygame.mixer.Sound("music/laser.mp3")
-# arrow_sound = pygame.mixer.Sound("music/矢発射音.mp3")
-# damage_sound = pygame.mixer.Sound("music/被弾音.mp3")
 
+laser_sound = pygame.mixer.Sound('music/laser.wav')
 class Player:
     def __init__(self):
+        # self.item_sound = pygame.mixer.Sound("music/アイテム取得音.mp3")
+        # self.bullet_sound = pygame.mixer.Sound("music/通常弾反射音.mp3")
+        # self.laser_sound = pygame.mixer.Sound("music/laser.wav")
+        # self.arrow_sound = pygame.mixer.Sound("music/矢発射音.mp3")
+        # self.damage_sound = pygame.mixer.Sound("music/被弾音.mp3")
         self.font = pygame.font.Font(None, 50)
         self.hp = 10
         self.mp = 120
