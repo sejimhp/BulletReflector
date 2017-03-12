@@ -75,9 +75,9 @@ class Player:
 
         #弾と自機の当たり判定
         for bullet in enemy_bullet_manager.bullets:
-            if bullet.x -19 <= self.x <= bullet.x +19 and \
-               bullet.y -19 <= self.y <= bullet.y +19:
-               if bullet.id == 2: # 普通の弾
+           if bullet.id == 2:#普通の弾
+               if bullet.x -20 <= self.x <= bullet.x +30 and \
+                bullet.y -25 <= self.y <= bullet.y +25:
                    player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
                    enemy_bullet_manager.bullets.remove(bullet)
                    if self.flag_increase_bullet:
@@ -86,12 +86,12 @@ class Player:
                        if pygame.time.get_ticks() - self.time > 10000:
                            self.time = pygame.time.get_ticks()
                            self.flag_increase_bullet = False
-               elif bullet.id == 3: # 矢
-                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
-                   enemy_bullet_manager.bullets.remove(bullet)
-               elif bullet.id == 4:
-                   self.mp += 1
-                   enemy_bullet_manager.bullets.remove(bullet)
+           elif bullet.id == 3: # 矢
+               player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
+               enemy_bullet_manager.bullets.remove(bullet)
+           elif bullet.id == 4:
+               self.mp += 1
+               enemy_bullet_manager.bullets.remove(bullet)
 
     def draw(self, screen, stage):
         x = self.x
