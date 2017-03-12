@@ -62,8 +62,8 @@ class Player:
 
 		#自機とアイテムの衝突判定
         for item in item_manager.items:
-            if self.x -39 <= item.x <= self.x +39 and \
-               self.y -39 <= item.y <= self.y +39:
+            if self.x -80 <= item.x <= self.x +30 and \
+               self.y -80 <= item.y <= self.y +20:
                item_manager.items.remove(item)
                if item.id == 1:
                    self.hp += 1

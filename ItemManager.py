@@ -6,7 +6,7 @@ class ItemManager:
 		self.items = []
 
 	def update(self, player):
-		if pygame.time.get_ticks() - self.time > 10000:
+		if pygame.time.get_ticks() - self.time > 20000:
 			self.time = pygame.time.get_ticks()
 			self.items.append(Item())
 
