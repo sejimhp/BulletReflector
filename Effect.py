@@ -1,5 +1,7 @@
 from Common import *
 
+damage_effect = pygame.image.load("image/damage_effect2.png.png")
+
 class Effect:
     def __init__(self):
         self.time = pygame.time.get_ticks()
@@ -17,7 +19,7 @@ class Effect:
 class Damage(Effect):
     def __init__(self):
         Effect.__init__(self)
-        self.image = pygame.image.load("image/damage_effect2.png.png")
+        self.image = damage_effect
         # 点滅回数
         self.val = 3
         self.time = pygame.time.get_ticks()

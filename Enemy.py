@@ -1,5 +1,10 @@
 from Common import *
 
+enemy1 = pygame.image.load("image/enemy1.png")
+enemy2 = pygame.image.load("image/enemy2.png")
+enemy3 = pygame.image.load("image/enemy3.png")
+enemy4 = pygame.image.load("image/enemy4.png")
+
 class Enemy:
     def __init__(self):
         self.font = pygame.font.Font(None, 30)
@@ -88,7 +93,7 @@ class Enemy1(Enemy):
         self.hp = 5
         # 移動速度
         self.r = random.uniform(0.1, 1)
-        self.image = pygame.image.load("image/enemy1.png")
+        self.image = enemy1
     def update(self, player, enemy_bullet_manager):
         Enemy.update(self, player, enemy_bullet_manager)
         #弾発射
@@ -109,7 +114,7 @@ class Enemy2(Enemy):
         self.hp = 3
         # 移動速度
         self.r = 0
-        self.image = pygame.image.load("image/enemy2.png")
+        self.image = enemy2
     def update(self, player, enemy_bullet_manager):
         Enemy.update(self, player, enemy_bullet_manager)
         #弾発射
@@ -130,7 +135,7 @@ class Enemy3(Enemy):
         self.hp = 1
         # 移動速度
         self.r = random.uniform(1.5, 2.5)
-        self.image = pygame.image.load("image/enemy3.png")
+        self.image = enemy3
 
 class Enemy4(Enemy):
     def __init__(self):
@@ -142,7 +147,7 @@ class Enemy4(Enemy):
         self.interval = pygame.time.get_ticks()
         # 移動速度
         self.r = random.uniform(0.1, 1)
-        self.image = pygame.image.load("image/enemy4.png")
+        self.image = enemy4
     def update(self, player, enemy_bullet_manager):
         Enemy.update(self, player, enemy_bullet_manager)
         #弾発射

@@ -1,16 +1,20 @@
 from Common import *
 
+item_image1 = pygame.image.load("image/item_hp.png")
+item_image2 = pygame.image.load("image/item_mp.png")
+item_image3 = pygame.image.load("image/item_bullet.png")
+
 class Item:
     def __init__(self):
         # アイテムの座標
         self.x = random.uniform(1, 3811)
         self.y = random.uniform(1, 2371)
         self.id = random.randint(1, 3)
-        self.image = pygame.image.load("image/item_hp.png")
+        self.image = item_image1
         if self.id == 2:
-            self.image = pygame.image.load("image/item_mp.png")
+            self.image = item_image2
         elif self.id == 3:
-            self.image = pygame.image.load("image/item_bullet.png")
+            self.image = item_image3
 
     def draw(self, screen, player, stage):
         x = self.x

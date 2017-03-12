@@ -1,5 +1,11 @@
 from Common import *
 
+bullet1_image = pygame.image.load("image/player_bullet.png")
+bullet2_image = pygame.image.load("image/enemy1_bullet.png")
+bullet3_image = pygame.image.load("image/arrow.png")
+bullet4_image = pygame.image.load("image/enemy_laser.png")
+bullet5_image = pygame.image.load("image/player_laser.png")
+
 class Bullet:
     def __init__(self, x, y, r, rad):
         self.font = pygame.font.Font(None, 30)
@@ -41,14 +47,14 @@ class MyBullet(Bullet):
     def __init__(self, x, y, r, rad):
         self.id = 1
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/player_bullet.png")
+        self.image = bullet1_image
         self.image = pygame.transform.scale(self.image, (20, 20))
 
 class EnemyBullet(Bullet):
     def __init__(self, x, y, r, rad):
         self.id = 2
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/enemy1_bullet.png")
+        self.image = bullet2_image
         self.image = pygame.transform.scale(self.image, (20, 20))
 
 class Arrow(Bullet):
@@ -76,13 +82,13 @@ class EnemyLaser(Bullet):
     def __init__(self, x, y, r, rad):
         self.id = 4
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/enemy_laser.png")
+        self.image = bullet4_image
 
 class PlayerLaser(Bullet):
     def __init__(self, x, y, r, rad):
         self.id = 5
         Bullet.__init__(self, x, y, r, rad)
-        self.image = pygame.image.load("image/player_laser.png")
+        self.image = bullet5_image
         # レーザーの向き
         # if abs(rad) < (math.pi/2): # 右半分の処理
             # self.y += 30
