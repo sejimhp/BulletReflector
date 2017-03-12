@@ -9,7 +9,7 @@ class EnemyManager:
     player_bullet_manager):
         if pygame.time.get_ticks() - self.time > 3000:
             self.time = pygame.time.get_ticks()
-            number = random.randint(1, 1)
+            number = random.randint(4, 4)
             if number == 1:
                 self.enemys.append(Enemy1())
             elif number == 2:

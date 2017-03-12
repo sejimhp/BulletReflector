@@ -57,9 +57,8 @@ class Game:
             self.screen.blit(text, (400, 400))
         elif self.state == "GAME":
             self.stage.draw(self.screen, self.player)
-            self.player.draw(self.screen, self.stage)
             self.enemy_manager.draw(self.screen, self.player, self.stage)
             self.player_bullet_manager.draw(self.screen, self.player, self.stage)
             self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
             self.item_manager.draw(self.screen, self.player, self.stage)
-            self.effect_manager.draw(self.screen)        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            self.screen.blit(text, (400, 400))        pygame.display.update()  # 画面
+            self.player.draw(self.screen, self.stage)            self.effect_manager.draw(self.screen)        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            self.screen.blit(text, (400, 400))        pygame.display.update()  # 画面

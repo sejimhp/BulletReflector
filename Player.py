@@ -87,11 +87,15 @@ class Player:
                            self.time = pygame.time.get_ticks()
                            self.flag_increase_bullet = False
            elif bullet.id == 3: # 矢
-               player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
-               enemy_bullet_manager.bullets.remove(bullet)
+               if bullet.x -10 <= self.x <= bullet.x + 40 and \
+                bullet.y -10 <= self.y <= bullet.y + 40:
+                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
+                   enemy_bullet_manager.bullets.remove(bullet)
            elif bullet.id == 4:
-               self.mp += 1
-               enemy_bullet_manager.bullets.remove(bullet)
+               if bullet.x -10 <= self.x <= bullet.x + 40 and \
+                bullet.y -10 <= self.y <= bullet.y + 40:
+                   self.mp += 1
+                   enemy_bullet_manager.bullets.remove(bullet)
 
     def draw(self, screen, stage):
         x = self.x

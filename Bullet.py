@@ -66,8 +66,8 @@ class Arrow(Bullet):
     def update(self, player):
         Bullet.update(self, player)
         if self.r == 0:
-            self.x = player.x
-            self.y = player.y
+            self.x = player.x - 20
+            self.y = player.y - 20
             self.pressed_keys = pygame.key.get_pressed()
             if self.pressed_keys[K_SPACE]:
                 self.r = 8
