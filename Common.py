@@ -12,6 +12,7 @@ import random
 STAGE_SIZE = (3811, 2371)
 SCREEN_SIZE = (1366, 768)  # 本番環境画面サイズ
 
+pygame.mixer.init(44100, 16, 2, 1024) #frequency, size, channels, buffersize
 def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
     """画像を回転させてblitする
     centerがTrueのとき，posはdst_surf上でsrc_surfの中心を差す
