@@ -6,7 +6,7 @@ class EnemyManager:
         self.enemys = []
 
     def update(self, player, enemy_bullet_manager, \
-    player_bullet_manager):
+    player_bullet_manager, effect_manager):
         if pygame.time.get_ticks() - self.time > 3000:
             self.time = pygame.time.get_ticks()
             number = random.randint(1, 4)
@@ -22,6 +22,7 @@ class EnemyManager:
         for enemy in self.enemys:
             enemy.update(player, enemy_bullet_manager)
             if enemy.valid(player_bullet_manager):
+                effect_manager.effects.append(Bom(enemy.x, enemy.y))
                 self.enemys.remove(enemy)
                 return True
         return False

@@ -7,9 +7,9 @@ class EffectManager:
 	def update(self):
 		for effect in self.effects:
 			effect.update()
-			if effect.valid() == 0:
+			if effect.valid():
 				self.effects.remove(effect)
 
-	def draw(self, screen):
+	def draw(self, screen, stage, player):
 		for effect in self.effects:
-			effect.draw(screen)
+			effect.draw(screen, stage, player)

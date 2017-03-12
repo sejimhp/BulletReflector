@@ -35,9 +35,9 @@ from Stage import *
 from Enemy import *
 from Bullet import *
 from BulletManager import *
-from EnemyManager import *
 from Effect import *
 from EffectManager import *
+from EnemyManager import *
 from Player import *
 from Item import *
 from ItemManager import *
