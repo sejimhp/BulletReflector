@@ -24,15 +24,24 @@ class Enemy:
             self.y -= self.r
 
     def valid(self, player_bullet_manager):
-        #敵の跳ね返した弾と自機の衝突判定
+        #弾と敵機の当たり判定
         for bullet in player_bullet_manager.bullets:
-            if bullet.x -19 <= self.x <= bullet.x +19 and \
-               bullet.y -19 <= self.y <= bullet.y +19:
-               if bullet.id == 5:
-                   self.hp -= 100
-               else:
+           if bullet.id == 1:#普通の弾
+               if bullet.x -30 <= self.x <= bullet.x +40 and \
+                bullet.y -35 <= self.y <= bullet.y +35:
                    player_bullet_manager.bullets.remove(bullet)
                    self.hp -= 1
+           elif bullet.id == 3: # 矢
+               if bullet.x -20 <= self.x <= bullet.x + 50 and \
+                bullet.y -20 <= self.y <= bullet.y + 50:
+                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
+                   player_bullet_manager.bullets.remove(bullet)
+                   self.hp -= 1
+           elif bullet.id == 5:
+               if bullet.x -10 <= self.x <= bullet.x + 40 and \
+                bullet.y -10 <= self.y <= bullet.y + 40:
+                   self.hp -= 100
+
         return self.hp < 1
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):

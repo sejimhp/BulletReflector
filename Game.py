@@ -28,6 +28,7 @@ class Game:
             if self.pressed_keys[K_RIGHT]:
                 self.state = "GAME"
                 self.player.hp = 10
+                self.player.mp = 120
                 self.enemy_bullet_manager.bullets.clear()
                 self.player_bullet_manager.bullets.clear()
                 self.item_manager.items.clear()
