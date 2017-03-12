@@ -16,6 +16,7 @@ class Effect:
     def valid(self):
         return
 
+# ダメージを受けた時のエフェクト
 class Damage(Effect):
     def __init__(self):
         Effect.__init__(self)
@@ -29,13 +30,14 @@ class Damage(Effect):
             self.time = pygame.time.get_ticks()
             self.val -= 1
 
-    def draw(self, screen):
+    def draw(self, screen, stage, player):
         if pygame.time.get_ticks() - self.time < 50:
             screen.blit(self.image, (0, 0))
 
     def valid(self):
         return self.val <= 0
 
+# 敵を倒した時のエフェクト
 class Bom(Effect):
     def __init__(self, x, y):
         Effect.__init__(self)
