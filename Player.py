@@ -36,6 +36,8 @@ class Player:
         if self.y >= 25 and \
            self.pressed_keys[K_UP]:
             self.y -= 2
+        if self.pressed_keys[K_o]:
+            self.mp += 1
         if pygame.time.get_ticks() - self.time_rapid_laser > 1000 and \
          self.pressed_keys[K_z] and self.mp >= 30:
             self.time_rapid_laser = pygame.time.get_ticks()
@@ -43,11 +45,11 @@ class Player:
             min_x = 10000
             min_y = 10000
             for enemy in enemy_manager.enemys:
-                if (min_x**2 + min_y**2) > ((enemy.x-self.x)**2 + (enemy.y-self.y)**2):
-                    min_x = enemy.x
-                    min_y = enemy.y
+                if (min_x**2 + min_y**2) > ((enemy.x+30-self.x-80)**2 + (enemy.y+30-self.y-80)**2):
+                    min_x = enemy.x + 30
+                    min_y = enemy.y + 30
             rad = math.atan2((self.y-min_y),(self.x-min_x))
-            player_bullet_manager.add(self.x, self.y, 10,  rad+math.pi, 5)
+            player_bullet_manager.add(self.x -80, self.y-80, 10,  rad+math.pi, 5)
 
         return self.hp <= 0
 

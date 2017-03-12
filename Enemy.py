@@ -34,12 +34,11 @@ class Enemy:
            elif bullet.id == 3: # 矢
                if bullet.x -20 <= self.x <= bullet.x + 50 and \
                 bullet.y -20 <= self.y <= bullet.y + 50:
-                   player_bullet_manager.add(bullet.x, bullet.y, 0, bullet.rad + math.pi, 3)
                    player_bullet_manager.bullets.remove(bullet)
                    self.hp -= 1
            elif bullet.id == 5:
-               if bullet.x -10 <= self.x <= bullet.x + 40 and \
-                bullet.y -10 <= self.y <= bullet.y + 40:
+               if bullet.x -60 <= self.x <= bullet.x + 60 and \
+                bullet.y -60 <= self.y <= bullet.y + 60:
                    self.hp -= 100
 
         return self.hp < 1
