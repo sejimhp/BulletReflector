@@ -23,6 +23,9 @@ class EnemyManager:
             enemy.update(player, enemy_bullet_manager)
             if enemy.valid(player_bullet_manager):
                 self.enemys.remove(enemy)
+                return True
+        return False
+
 
     def draw(self, screen, player, stage):
         for enemy in self.enemys:

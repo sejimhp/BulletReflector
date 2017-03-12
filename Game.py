@@ -2,7 +2,9 @@ from Common import *
 
 class Game:
     def __init__(self):
+        self.score = 0
         self.font = pygame.font.Font(None, 100)
+        self.font_score = pygame.font.Font(None, 50)
         # ゲームの状態
         self.state = "MAIN"
         # SCREEN_SIZEの画面を作成
@@ -29,6 +31,7 @@ class Game:
                 self.state = "GAME"
                 self.player.hp = 10
                 self.player.mp = 120
+                self.score = 0
                 self.enemy_bullet_manager.bullets.clear()
                 self.player_bullet_manager.bullets.clear()
                 self.item_manager.items.clear()
@@ -36,7 +39,8 @@ class Game:
         elif self.state == "GAME":
             self.stage.update()
             self.item_manager.update(self.player)
-            self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager)
+            if self.enemy_manager.update(self.player, self.enemy_bullet_manager ,self.player_bullet_manager):
+                self.score += 100
             if self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager, self.effect_manager):
                 self.state = "SCORE"
             self.player_bullet_manager.update(self.stage, self.player)
@@ -62,4 +66,4 @@ class Game:
             self.player_bullet_manager.draw(self.screen, self.player, self.stage)
             self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
             self.item_manager.draw(self.screen, self.player, self.stage)
-            self.player.draw(self.screen, self.stage)            self.effect_manager.draw(self.screen)        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            self.screen.blit(text, (400, 400))        pygame.display.update()  # 画面
+            self.player.draw(self.screen, self.stage)            self.effect_manager.draw(self.screen)            text = self.font_score.render(str(self.score) , True, (255,255,255))            self.screen.blit(text, (50, 700))        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            self.screen.blit(text, (400, 400))        pygame.display.update()  # 画面

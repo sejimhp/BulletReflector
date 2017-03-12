@@ -43,7 +43,7 @@ class Player:
             min_x = 10000
             min_y = 10000
             for enemy in enemy_manager.enemys:
-                if (min_x**2 + min_y**2) > (enemy.x**2 + enemy.y**2):
+                if (min_x**2 + min_y**2) > ((enemy.x-self.x)**2 + (enemy.y-self.y)**2):
                     min_x = enemy.x
                     min_y = enemy.y
             rad = math.atan2((self.y-min_y),(self.x-min_x))

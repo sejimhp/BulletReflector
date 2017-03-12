@@ -85,6 +85,7 @@ class PlayerLaser(Bullet):
         self.image = pygame.image.load("image/player_laser.png")
         # レーザーの向き
         if abs(rad) < (math.pi/2): # 右半分の処理
+            # self.y += 30
             self.image = pygame.transform.flip(self.image ,True, False)
             self.image = pygame.transform.rotate(self.image, -(math.pi/2+rad)*180/math.pi)
         else: # 左半分の処理
