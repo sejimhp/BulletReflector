@@ -2,6 +2,8 @@ from Common import *
 
 class Game:
     def __init__(self):
+        pygame.mixer.music.load("music/BGM.mp3")
+        pygame.mixer.music.play(-1)
         self.score = 0
         self.best_score = 0
         self.font = pygame.font.Font(None, 100)

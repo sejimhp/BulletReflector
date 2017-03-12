@@ -1,5 +1,11 @@
 from Common import *
 
+# item_sound = pygame.mixer.Sound("music/アイテム取得音.mp3")
+# bullet_sound = pygame.mixer.Sound("music/通常弾反射音.mp3")
+laser_sound = pygame.mixer.Sound("music/laser.mp3")
+# arrow_sound = pygame.mixer.Sound("music/矢発射音.mp3")
+# damage_sound = pygame.mixer.Sound("music/被弾音.mp3")
+
 class Player:
     def __init__(self):
         self.font = pygame.font.Font(None, 50)
@@ -51,6 +57,7 @@ class Player:
                     min_y = enemy.y + 30
             rad = math.atan2((self.y-min_y),(self.x-min_x))
             player_bullet_manager.add(self.x -80, self.y-80, 10,  rad+math.pi, 5)
+            laser_sound.play()
 
         return self.hp <= 0
 
