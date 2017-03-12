@@ -2,6 +2,7 @@ from Common import *
 
 class Player:
     def __init__(self):
+        self.font = pygame.font.Font(None, 50)
         self.hp = 10
         self.mp = 120
         self.time = pygame.time.get_ticks()
@@ -39,13 +40,13 @@ class Player:
         if self.pressed_keys[K_o]:
             self.mp += 1
         if pygame.time.get_ticks() - self.time_rapid_laser > 1000 and \
-         self.pressed_keys[K_z] and self.mp >= 30:
+         self.pressed_keys[K_z] and self.mp >= 60:
             self.time_rapid_laser = pygame.time.get_ticks()
             self.mp -= 60
             min_x = 10000
             min_y = 10000
             for enemy in enemy_manager.enemys:
-                if (min_x**2 + min_y**2) > ((enemy.x+30-self.x-80)**2 + (enemy.y+30-self.y-80)**2):
+                if ((self.x+80-min_x)**2 + (self.y+80-min_y)**2) > (((self.x+80)-(enemy.x+30))**2 + ((self.y+80)-(enemy.y+30))**2):
                     min_x = enemy.x + 30
                     min_y = enemy.y + 30
             rad = math.atan2((self.y-min_y),(self.x-min_x))
@@ -126,6 +127,8 @@ class Player:
         screen.blit(self.image_title, (20, 20))
         if self.flag_increase_bullet:
             screen.blit(self.image_item, (25, 90))
+        # text = self.font.render(str(self.x) + " , " + str(self.y) , True, (255,255,255))
+        # screen.blit(text, (400, 400))
 
     def rotate_blit(dst_surf, src_surf, pos, angle, center=True):
         #回転させたイメージの作成
