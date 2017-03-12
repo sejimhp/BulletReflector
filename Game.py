@@ -2,7 +2,7 @@ from Common import *
 
 class Game:
     def __init__(self):
-        pygame.mixer.pre_init(44100, 16, 2, 4096) #frequency, size, channels, buffersize
+        pygame.mixer.init(44100, 16, 2, 1024) #frequency, size, channels, buffersize
         pygame.init()
         pygame.mixer.music.load("music/BGM.mp3")
         pygame.mixer.music.play(-1)

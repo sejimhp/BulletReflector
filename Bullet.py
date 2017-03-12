@@ -6,6 +6,8 @@ bullet3_image = pygame.image.load("image/arrow.png")
 bullet4_image = pygame.image.load("image/enemy_laser.png")
 bullet5_image = pygame.image.load("image/player_laser.png")
 
+arrow_sound = pygame.mixer.Sound("music/arrow.wav")
+
 class Bullet:
     def __init__(self, x, y, r, rad):
         self.font = pygame.font.Font(None, 30)
@@ -77,6 +79,7 @@ class Arrow(Bullet):
             self.pressed_keys = pygame.key.get_pressed()
             if self.pressed_keys[K_SPACE]:
                 self.r = 8
+                arrow_sound.play()
 
 class EnemyLaser(Bullet):
     def __init__(self, x, y, r, rad):

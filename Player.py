@@ -1,12 +1,16 @@
 from Common import *
 
 
-laser_sound = pygame.mixer.Sound('music/laser.wav')
+# laser_sound = pygame.mixer.Sound('music/laser.wav')
+item_sound = pygame.mixer.Sound("music/item.wav")
+bullet_sound = pygame.mixer.Sound("music/bullet.wav")
+laser_sound = pygame.mixer.Sound("music/laser.wav")
+damage_sound = pygame.mixer.Sound("music/damage.wav")
 class Player:
     def __init__(self):
         # self.item_sound = pygame.mixer.Sound("music/アイテム取得音.mp3")
         # self.bullet_sound = pygame.mixer.Sound("music/通常弾反射音.mp3")
-        # self.laser_sound = pygame.mixer.Sound("music/laser.wav")
+        # self.laser_sound = pygame.mixer.Sound("music/lasemr.wav")
         # self.arrow_sound = pygame.mixer.Sound("music/矢発射音.mp3")
         # self.damage_sound = pygame.mixer.Sound("music/被弾音.mp3")
         self.font = pygame.font.Font(None, 50)
@@ -70,12 +74,14 @@ class Player:
                enemy_manager.enemys.remove(enemy)
                self.hp -= 1
                effect_manager.effects.append(Damage())
+               damage_sound.play()
 
 		#自機とアイテムの衝突判定
         for item in item_manager.items:
             if self.x -80 <= item.x <= self.x +30 and \
                self.y -80 <= item.y <= self.y +20:
                item_manager.items.remove(item)
+               item_sound.play()
                if item.id == 1:
                    self.hp += 1
                elif item.id == 2:
@@ -91,6 +97,7 @@ class Player:
                 bullet.y -25 <= self.y <= bullet.y +25:
                    player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi, 1)
                    enemy_bullet_manager.bullets.remove(bullet)
+                   bullet_sound.play()
                    if self.flag_increase_bullet:
                        player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi - 0.1, 1)
                        player_bullet_manager.add(bullet.x, bullet.y, bullet.r + 3, bullet.rad + math.pi + 0.1, 1)
