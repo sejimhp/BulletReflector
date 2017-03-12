@@ -38,7 +38,7 @@ class Enemy:
                    self.hp -= 1
            elif bullet.id == 3: # 矢
                if bullet.x -20 <= self.x <= bullet.x + 50 and \
-                bullet.y -20 <= self.y <= bullet.y + 50:
+                bullet.y -20 <= self.y <= bullet.y + 50 and bullet.r != 0:
                    player_bullet_manager.bullets.remove(bullet)
                    self.hp -= 1
            elif bullet.id == 5:
