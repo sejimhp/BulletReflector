@@ -3,6 +3,7 @@ from Common import *
 class Game:
     def __init__(self):
         self.score = 0
+        self.best_score = 0
         self.font = pygame.font.Font(None, 100)
         self.font_score = pygame.font.Font(None, 50)
         # ゲームの状態
@@ -36,6 +37,7 @@ class Game:
                 self.player_bullet_manager.bullets.clear()
                 self.item_manager.items.clear()
                 self.enemy_manager.enemys.clear()
+                self.effect_manager.effects.clear()
         elif self.state == "GAME":
             self.stage.update()
             self.item_manager.update(self.player)
@@ -43,6 +45,8 @@ class Game:
                 self.score += 100
             if self.player.update(self.enemy_manager, self.player_bullet_manager, self.enemy_bullet_manager, self.item_manager, self.effect_manager):
                 self.state = "SCORE"
+                if self.best_score < self.score:
+                    self.best_score = self.score
             self.player_bullet_manager.update(self.stage, self.player)
             self.enemy_bullet_manager.update(self.stage, self.player)
             self.effect_manager.update()
@@ -59,11 +63,13 @@ class Game:
             self.stage.draw(self.screen, self.player)
             self.player.draw(self.screen, self.stage)
             text = self.font.render("Right GameStart" , True, (255,255,255))
+            score = self.font.render("Best Score   " + str(self.best_score) , True, (255,255,255))
             self.screen.blit(text, (400, 400))
+            self.screen.blit(score, (400, 500))
         elif self.state == "GAME":
             self.stage.draw(self.screen, self.player)
             self.enemy_manager.draw(self.screen, self.player, self.stage)
             self.player_bullet_manager.draw(self.screen, self.player, self.stage)
             self.enemy_bullet_manager.draw(self.screen, self.player, self.stage)
             self.item_manager.draw(self.screen, self.player, self.stage)
-            self.player.draw(self.screen, self.stage)            self.effect_manager.draw(self.screen)            text = self.font_score.render(str(self.score) , True, (255,255,255))            self.screen.blit(text, (50, 700))        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            self.screen.blit(text, (400, 400))        pygame.display.update()  # 画面
+            self.player.draw(self.screen, self.stage)            self.effect_manager.draw(self.screen)            text = self.font_score.render(str(self.score) , True, (255,255,255))            self.screen.blit(text, (50, 700))        elif self.state == "SCORE":            self.stage.draw(self.screen, self.player)            text = self.font.render("GameOver" , True, (255,255,255))            score = self.font.render("Your Score   " + str(self.score) , True, (255,255,255))            best_score = self.font.render("Best Score   " + str(self.best_score) , True, (255,255,255))            self.screen.blit(text, (400, 400))            self.screen.blit(score, (400, 500))            self.screen.blit(best_score, (400, 600))        pygame.display.update()  # 画面
